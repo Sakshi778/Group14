@@ -1,0 +1,462 @@
+/* App.css */
+
+
+
+.card {
+  width: 200px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: lightblue;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Added to set position for checkbox */
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #666;
+}
+
+.card-checkbox {
+
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+}
+
+.search-bar {
+  width: 230px; /* Set the desired width */
+  height: 30px; /* Set the desired height */
+  padding: 5px 10px;
+  font-size: 18px;
+  border-right: none; /* Add padding for text */
+position: relative;
+top:-98.5px;
+left:600px;
+}
+
+.search {
+  font-size:medium;
+  border: solid 2px ;
+  border-left: none;
+  padding:11.2px 10px;
+  position: relative; 
+top:-98.5px;
+left:600px;
+
+
+}
+.search-bar2 {
+  width: 230px; /* Set the desired width */
+  height: 30px; /* Set the desired height */
+  padding: 5px 10px;
+  font-size: 18px;
+  border-right: none; /* Add padding for text */
+position: relative;
+top:-80.5px;
+left:600px;
+}
+
+.search2 {
+  font-size:medium;
+  border: solid 2px ;
+  border-left: none;
+  padding:11.2px 10px;
+  position: relative; 
+top:-80.5px;
+left:600px;
+
+
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.topbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  margin-left: 50px;
+}
+.menu-item{
+  text-decoration: none;
+  color: #fff;
+  font-family:monospace;
+  font-size: 25px;
+  padding: 20px;
+  font-weight: 600;
+  text-decoration: none;
+ 
+  
+}
+.bseimg{
+  width:140px;
+  position: relative;
+  top:20px;
+}
+ .nseimg{
+position: relative;
+top: 40px;
+  width:180px;
+  opacity: 0.8;
+ }
+
+.login{
+  color: wheat;
+}
+
+#arb{
+  color: #ff7200;
+  }
+.form{
+  width: 250px;
+  height: 380px;
+  background: lightgray ;
+  position: relative;
+  top: -700px;
+  left: 1100px;
+  transform: translate(0%,-5%);
+  border-radius: 10px;
+  padding: 25px;
+  text-decoration-color: #fff;
+}
+
+#content{
+  width: 1200px;
+  height: auto;
+  margin: auto;
+  color: #fff;
+  position: relative;
+  top:120px;
+  font-size: 60px;
+}
+
+body{
+  margin:0;
+}
+.lp{
+  position: relative;
+  top: -10px;
+  text-align: center;
+}
+.username{
+  position: relative;
+  top:0px;
+  text-align: center;
+  font-size: large;
+  background-color: lightgray;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+  
+}
+.password{
+  position: relative;
+  top:20px;
+  background-color: lightgray;
+  text-align: center;
+  font-size: large;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.btnn{
+  width: 240px;
+  height: 40px;
+  background: #ff7200;
+  border: none;
+  margin-top: 30px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.4s ease;
+  position: relative;
+  top: 20px;
+}
+.btnn:hover{
+  background: #fff;
+  color: #ff7200;
+}
+.btnn a{
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+#abtbse{
+  color: #ddd;
+  position: relative;
+  top:300px;
+  font-size: 20px;
+  line-height: 30px;
+  word-spacing: 7px;
+  margin-left: 40px;
+}
+#abtnse{
+  color: #ddd;
+  position: relative;
+  top:400px;
+  font-size: 20px;
+  line-height: 30px;
+  word-spacing: 7px;
+  margin-left: 40px;
+}
+
+.bsimg{
+  position: relative;
+  width:140px;
+  padding: 20px;
+  top:-50px;
+}
+.nsimg{
+  position: relative;
+  padding: 20px;
+    width:230px;
+    top:-40px;
+
+   }
+   .bsim{
+    position: relative;
+    width:140px;
+    padding: 20px;
+    top:30px;
+    left:-20px;
+  }
+  .nsim{
+    position: relative;
+    padding: 20px;
+      width:230px;
+  top:40px;
+  left:-20px;
+     }
+   .system{
+    color: #ff7200;
+    font-size: 50px;
+    position: relative;
+    top:-110px;
+   }
+   .system2{
+    color: #ff7200;
+    font-size: 50px;
+    position: relative;
+    top:-30px;
+    left:-20px;
+   }
+
+   .rec{
+   text-align: center;
+   position: relative;
+   top:-110px;
+   }
+
+   #all{
+    font-size: 20px;
+    position: relative;
+    top:-50px;
+    margin-left: 20px;
+   }
+
+   .logout-button{
+    
+    background: #ff7200;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    position: relative;
+    top:50px;
+    left:1400px
+
+   }
+   .logout-button:hover{
+    background: #fff;
+    color: #ff7200;
+  }
+  .logout-button a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+
+  .edit{
+    font-size: 23px;
+    position: relative;
+    top: -1100px;
+    left:1270px
+    
+  }
+  .savehead{
+    position: relative;
+    top:-30px;
+    margin: 20px;
+  }
+  .save-sel{
+    background: #ff7200;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    margin:30px;
+    
+  }
+
+
+  .save-sel:hover{
+    background: #fff;
+    color: #ff7200;
+  }
+  .save-sel a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+  .save-all{
+    background: #ff7200;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .save-all:hover{
+    background: #fff;
+    color: #ff7200;
+  }
+  .save-all a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+
+  .show{
+    font-size: 30px;
+    padding: 30px;;
+  }
+
+  .remove-sel{
+    background: #ff7200;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    margin:30px;
+    
+  }
+
+  .remove-sel:hover{
+    background: #fff;
+    color: #ff7200;
+  }
+  .remove-sel a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+  .remove-all{
+    background: #ff7200;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .remove-all:hover{
+    background: #fff;
+    color: #ff7200;
+  }
+  .remove-all a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+  .go{
+    font-size: 30px;
+    padding: 30px;;
+  }
+  .save{
+    text-align: center;
+    position: relative;
+    top:-80px;
+    font-size: 30px;
+    left:-20px;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    #cardcheck{
+      transform: scale(1.8);
+  
+    }
+  
+    .empty-element {
+      height: 40px; /* Adjust the height as needed */
+      width: 100%; /* Adjust the width as needed */
+      background-color: transparent; /* Set the background color as desired */
+      /* Add any other styles you want to apply to the empty element */
+      position: relative;
+      top:-20px;
+    }
+
+   
+    .error-container{
+  
+      position: relative;
+      top:-40px;
+      height:40px;
+    }
+    .emp{
+    
+      height: 80px;
+    }
