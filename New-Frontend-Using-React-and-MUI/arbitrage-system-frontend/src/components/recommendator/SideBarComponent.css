@@ -1,0 +1,22 @@
+@media (min-width: 700px) {
+    .sidebar-container{
+        border: 2px solid ;
+        height: 100%;
+        padding: 10px;
+        min-height: 450px;
+        border-color: grey;
+    }
+}
+
+@media (max-width: 699px) {
+    .sidebar-container{
+        border: 2px solid ;
+        height: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        min-width: 400px;
+        border-color: grey;
+        display: flex;
+        flex-direction: column;
+    }
+}

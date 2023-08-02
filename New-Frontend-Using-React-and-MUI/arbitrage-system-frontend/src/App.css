@@ -1,0 +1,13 @@
+/* if want to make any changes to entire application add that styling in this */
+
+
+.App {
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  /* min-width: 700px; */
+}
+
+.header {
+  display: flex;
+}

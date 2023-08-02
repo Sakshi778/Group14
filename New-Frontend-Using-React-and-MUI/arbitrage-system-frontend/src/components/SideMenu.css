@@ -1,0 +1,21 @@
+.drawer {
+    width: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+    transition: 0.3s;
+  }
+  
+  .drawer.open {
+    width: 250px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
