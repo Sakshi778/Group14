@@ -2,18 +2,17 @@ import React from 'react'
 import StockCard from './StockCard'
 import Grid from '@mui/material/Grid';
 
+// onHandleSave = {props.onHandleSave} onHandleLearnMore = {props.onHandleLearnMore}
 
-function StockList() {
+function StockList(props) {
   return (
     <div>
-        <Grid container spacing={2}
-        >
-            <Grid item xs={12} sm={6} md={4}>
-                <StockCard/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-                <StockCard/>
-            </Grid>
+        <Grid container spacing={2}>
+            {props.stockList.map((stock, id) => (
+              <Grid key = {id} stock xs = {12} sm={8} md={6}>
+                <StockCard key={stock.id} stock={stock} />
+              </Grid>
+            ))}
         </Grid>
     </div>
   )
