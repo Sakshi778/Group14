@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 function StockList(props) {
   return (
     <div>
-        <Grid container spacing={2}>
+        <Grid container spacing={0.5} style={{ maxWidth: '1200px', margin: '0 auto' }}>
             {props.stockList.map((stock, id) => (
               <Grid key = {id} stock xs = {12} sm={8} md={6}>
                 <StockCard key={stock.id} stock={stock} />

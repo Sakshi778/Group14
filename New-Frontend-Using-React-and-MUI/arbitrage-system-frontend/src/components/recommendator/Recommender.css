@@ -4,7 +4,7 @@
         display: flex;
         flex-Direction: row;
         padding: 10px;
-        align-items: center;
+        /* align-items: center; */
     }
 }
 

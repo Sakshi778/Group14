@@ -11,12 +11,12 @@ export default function StockCard(props) {
   const symbol = stock.symbol;
 
   const profitAccurate = Math.abs(stock.bsePrice - stock.nsePrice);
-  const profitRounded = parseFloat(profitAccurate.toFixed(2))
+  const profitRounded = parseFloat(stock.profit.toFixed(2))
 
   return (
     <Card sx={{
-      maxWidth: 400,
-      minWidth: 400,
+      maxWidth: 350,
+      minWidth: 350,
       margin: 5,
     }}>
       <CardContent >
@@ -64,7 +64,7 @@ export default function StockCard(props) {
         </div>
         <div>
           <Typography variant="body2" color="text.secondary">
-            NSE Current Price: {stock.nsePrice}
+            NSE Current Price: {stock.nsePrice}.toFixed(2)
           </Typography>
         </div>
       </CardContent>

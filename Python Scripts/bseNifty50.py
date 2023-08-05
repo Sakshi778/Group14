@@ -1,30 +1,57 @@
-import pandas as pd
-import os
 import time
 import yfinance as yf
 yf.set_tz_cache_location("custom/cache/location")
 import pprint
+import db
 
-start = time.time()
+def getBsePrices():
+    start = time.time()
+    symbols_collection = db['Nifty_50_Stocks_Symbols']
+    stocks_details_collection = db['Stock_Details']
 
-df_symbols = pd.read_excel(os.getcwd()+'/nifty50symbols.xlsx')
-symbols = df_symbols['symbol'].tolist()
-bseSymbols = [ticker+'.BO' for ticker in symbols]
+    cursor = symbols_collection.find({})
 
-# get all stock info
-bse_stocksQuote = yf.Tickers(bseSymbols)
+    symbols = [doc.get('Symbol') for doc in cursor]
 
-bse_col = list(bse_stocksQuote.tickers[bseSymbols[0]].info.keys())
-bse_col.remove('companyOfficers')
+    bseSymbols = [ticker+'.BO' for ticker in symbols]
 
-df_bse = pd.DataFrame(columns=bse_col)
+    # get all stock info
+    bse_stocksQuote = yf.Tickers(bseSymbols)
 
-for symbol in bseSymbols:
-    stockQuote = bse_stocksQuote.tickers[symbol].info
-    stockQuote.pop('companyOfficers', -1)
-    df_bse.loc[len(df_bse)] = stockQuote
+    stockQuotes = []
 
-df_bse.to_excel(os.getcwd()+'/nifty50Bse.xlsx', index=False)
+    for symbol in bseSymbols:
+        stockQuote = bse_stocksQuote.tickers[symbol].info
+        syb = bse_stocksQuote.tickers[symbol].info['symbol']
+        syb = syb[:len(syb)-3]
+        temp = {
+            'Symbol': syb,
+            'BSE Price': bse_stocksQuote.tickers[symbol].info['currentPrice']
+        }
+        stockQuotes.append(temp)
 
-end = time.time()
-print(end-start)
+    for stock_data in stockQuotes:
+        symbol = stock_data.get('Symbol')  
+        new_price = stock_data.get('BSE Price')
+        update_query = {"$set": {'BSE Price': new_price}} 
+        result = stocks_details_collection.update_one({'Symbol': symbol}, update_query) 
+
+    # if len(result.modified_count) > 0:
+    #     print("Success")
+    # else:
+    #     print("Failed")
+
+
+        
+        
+
+    # df_bse.to_excel(os.getcwd()+'/nifty50Bse.xlsx', index=False)
+
+    end = time.time()
+    print(end-start)
+
+
+if __name__ == '__main__':
+    db = db.get_db()
+    while True:
+        getBsePrices()

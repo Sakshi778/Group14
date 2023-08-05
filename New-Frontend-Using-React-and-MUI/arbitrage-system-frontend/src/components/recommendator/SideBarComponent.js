@@ -4,23 +4,31 @@ import { FormControl, InputLabel, Select, MenuItem, Button, Typography } from '@
 
 
 
-function SideBarComponent() {
+function SideBarComponent({updateIndex}) {
 
     
     const [selectedValue, setSelectedValue] = useState('');
     const options = [
-        { value: 'nifty50', label: 'Nifty 50' },
-        { value: 'nifty100', label: 'Nifty 100' },
-        { value: 'bse100', label: 'BSE 100' },
-      ];
+        { value: 'nifty50', label: 'NIFTY 50' },
+        { value: 'niftyMidCap50', label: 'NIFTY MIDCAP 50' },
+        { value: 's&pBseSensex', label: 'S&P BSE SENSEX' },
+        { value: 's&pBseSensex50', label: 'S&P BSE SENSEX 50' },
+        {value: 's&pBseBharat22', label: 'S&P BSE BHARAT 22'}
+    ];
+
+    const handleSubmit = () =>{
+        updateIndex(selectedValue);
+    }
     return (
         <div className='sidebar-container'>
+            
             <Typography gutterBottom variant='h6'
             style={{
                 margin: '10px',
                 marginBottom: '20px',
                 // textDecoration: 'underline'
             }}>Choose Index</Typography>
+
             <FormControl fullWidth variant="outlined">
             <InputLabel>Select Index</InputLabel>
             <Select
@@ -41,7 +49,7 @@ function SideBarComponent() {
             </Select>
             </FormControl>
             <span style={{ display: 'block'}}>
-                <Button variant='contained'>Submit</Button>
+                <Button variant='contained' onClick={handleSubmit}>Submit</Button>
             </span>
         </div>
     )

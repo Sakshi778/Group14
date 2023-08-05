@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Home', 'Recommender', 'Dashboard'];
+const pages = ['Home', 'Recommender', 'Your Stocks'];
 const settings = ['Profile', 'Account', 'Logout'];
 
 function HeaderAppBar() {
@@ -35,7 +35,7 @@ function HeaderAppBar() {
   };
 
   return (
-    <AppBar position="static" zIndex={1100}>
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
