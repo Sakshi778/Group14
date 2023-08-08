@@ -1,11 +1,13 @@
+import { Typography } from '@mui/material'
 import React from 'react'
+import { memo } from 'react'
 
 function Home() {
   return (
     <div>
-        <search/>
+        <Typography>Hello</Typography>
     </div>
   )
 }
 
-export default Home
+export default memo(Home)

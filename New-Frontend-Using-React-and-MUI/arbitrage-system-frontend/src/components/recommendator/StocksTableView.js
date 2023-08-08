@@ -6,15 +6,24 @@ import './StocksTableView.css'
 import Checkbox from '@mui/material/Checkbox';
 import SaveIcon from '@mui/icons-material/Save';
 import {Alert, AlertTitle} from '@mui/material';
-function StocksTableView({url, columns}) {
+function StocksTableView({url}) {
     const [data, setData] = useState([])
     const [shouldRender, setShouldRender] = useState(false)
     const [saveStatus, setSaveStatus] = useState(false)
     const [gotStocks, setGotStocks] = useState(false);
+    const [marketStatus, setMarketStatus] = useState(false);
 
     const getData = (url) => {
-      //get it for first time
-      const intervalId = setInterval(() => {
+      fetch('http://localhost:8080/marketStatus')
+      .then((response) => response.json())
+      .then((status) => {
+          setMarketStatus(status);
+      })
+      .catch((error) => console.error('Error fetching data:', error));
+
+      //if market is open then and then only update the stocks after every 15 sec
+      if(marketStatus){
+        const intervalId = setInterval(() => {
           fetch(url)
           .then((response) => response.json())
           .then((data) => {
@@ -27,14 +36,26 @@ function StocksTableView({url, columns}) {
           .catch((error) => console.error('Error fetching data:', error));
         }, 15000);
         return () => clearInterval(intervalId);
+      }
+
+      //if market is closed then only fetch last trade data
+      else{
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            setData(data)
+            setShouldRender(true);
+            setSortedData(data);
+            setGotStocks(true);
+            console.log(data)
+          })
+          .catch((error) => console.error('Error fetching data:', error));
+      }
+      
+      
     }
 
     useEffect(() =>{
-    //     fetchData('http://localhost:8080/getStockDetails');
-    //     const intervalId = setInterval(fetchData, 15000);
-
-    // // Clean up the interval when the component unmounts
-    //     return () => clearInterval(intervalId);
         getData(url)
     }, [])
     
@@ -137,6 +158,7 @@ function StocksTableView({url, columns}) {
         var savedStocks = [];
         for (let i=0;i<selectedRows.length;i++){
           var targetObject = data.find(obj => obj.id === selectedRows[i]);
+          console.log(targetObject);
           var savedStock = {}
           savedStock.username = 'sdavis92';
           savedStock.symbol = targetObject.symbol;
@@ -205,11 +227,11 @@ function StocksTableView({url, columns}) {
                 <TableHead>
                     <TableRow>
                     <TableCell >
-                        <Checkbox
+                        {/* <Checkbox
                         checked={selectAll}
                         onChange={handleSelectAll}
                         color="primary"
-                        />
+                        /> */}
                     </TableCell>
                     <TableCell style={{fontWeight: 'bold'}}>
                     <TableSortLabel
@@ -270,11 +292,11 @@ function StocksTableView({url, columns}) {
                     <TableRow 
                         key={item.id}
                         >
-                            <Checkbox
+                            {/* <Checkbox
                             checked={selectedRows.includes(item.id)}
                             onChange={() => handleRowCheckboxToggle(item.id)}
                             color="primary"
-                            />
+                            /> */}
                         <TableCell>{item.companyName}</TableCell>
                         <TableCell>{item.symbol}</TableCell>
                         <TableCell>{item.bsePrice}</TableCell>

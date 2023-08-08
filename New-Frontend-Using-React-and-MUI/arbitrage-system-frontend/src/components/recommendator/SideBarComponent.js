@@ -11,9 +11,9 @@ function SideBarComponent({updateIndex}) {
     const options = [
         { value: 'nifty50', label: 'NIFTY 50' },
         { value: 'niftyMidCap50', label: 'NIFTY MIDCAP 50' },
-        { value: 's&pBseSensex', label: 'S&P BSE SENSEX' },
-        { value: 's&pBseSensex50', label: 'S&P BSE SENSEX 50' },
-        {value: 's&pBseBharat22', label: 'S&P BSE BHARAT 22'}
+        { value: 'niftyPrivateBank', label: 'NIFTY PRIVATE BANK' },
+        { value: 'niftyBank', label: 'NIFTY BANK' },
+        { value: 'niftyAuto', label: 'NIFTY AUTO'}
     ];
 
     const handleSubmit = () =>{

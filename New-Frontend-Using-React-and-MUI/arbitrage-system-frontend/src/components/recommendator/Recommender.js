@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, memo} from 'react'
 import Typography from '@mui/material/Typography';
 import SideBarComponent from './SideBarComponent';
 import './Recommender.css'
@@ -59,4 +59,4 @@ function Recommender() {
   )
 }
 
-export default Recommender
+export default memo(Recommender)
