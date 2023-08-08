@@ -1,0 +1,4 @@
+BSE Price,Company Name,NSE Price,Profit,Symbol,Timestamp,Username,_class,_id
+227.9,NTPC Limited,218.15,0.25,NTPC,1628227200,sdavis92,com.citibridge.arbitrage.model.UserStocks,64d0b08a7a4929408923741d
+247.5,Power Grid Corporation of India Limited,248.5,1,POWERGRID,1691401924128,sdavis92,com.citibridge.arbitrage.model.UserStocks,64d0bec47a4929408923744a
+775.9,Adani Ports and Special Economic Zone Limited,757.15,18.75,ADANIPORTS,1691401924128,sdavis92,com.citibridge.arbitrage.model.UserStocks,64d0bec47a4929408923744b
