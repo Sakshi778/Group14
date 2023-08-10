@@ -6,6 +6,7 @@ import SavedStocksTableView from './components/saved_stocks/SavedStocksTableView
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/home/Home'
 import Profile from './components/profile/Profile';
+import LoginPage from './components/login/LoginPage';
 
 
 
@@ -13,7 +14,7 @@ function App() {
   
   return (
       <div className="App">
-        <BrowserRouter>
+        {/* <BrowserRouter>
           <div className='header'>
             <HeaderAppBar/>
           </div>
@@ -36,7 +37,8 @@ function App() {
             element={<Profile />}/>
           </Routes>
 
-          </BrowserRouter>
+          </BrowserRouter> */}
+          <LoginPage/>
       </div>    
     
   );
