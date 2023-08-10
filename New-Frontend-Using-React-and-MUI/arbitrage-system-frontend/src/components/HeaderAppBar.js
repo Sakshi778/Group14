@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+
+import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,9 +12,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import {Link, useHistory, useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './HeaderAppBar.css'
 
-// const pages = ['Home', 'Recommender', 'Your Stocks'];
 const pages = [
   {
     label: 'Home',
@@ -28,29 +29,34 @@ const pages = [
     path: '/your-stocks'
   }
 ];
-
+const settings = [
+  {
+    label: 'Profile',
+    path: '/profile'
+  },
+  {
+    label: 'Logout',
+    path: '/login'
+  }];
 
 function HeaderAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
-  const navigate = useNavigate()
-
-  const handleNavigate = (path) => {
-    navigate(path);
-  }
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleProfileClick = () => {
-
-  }
-
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   return (
     <AppBar position="static">
@@ -104,8 +110,8 @@ function HeaderAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.label} onClick={handleNavigate(page.path)}>
-                  <Typography textAlign="center">{page.label}</Typography>
+                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                  <Link to={page.path} className='navigation-text'><Typography textAlign="center">{page.label}</Typography></Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -114,7 +120,7 @@ function HeaderAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -130,22 +136,46 @@ function HeaderAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page.label}
-                onClick={handleNavigate(page.path)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page.label}
-              </Button>
+              <Link to={page.path} className='navigation-text'>
+                <Button
+                  key={page.label}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.label}
+                </Button>
+              </Link>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleProfileClick} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
+                  <Link to={setting.path} className='navigation-text'><Typography textAlign="center">{setting.label}</Typography></Link>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </Container>

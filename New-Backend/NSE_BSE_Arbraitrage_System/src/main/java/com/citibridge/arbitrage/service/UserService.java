@@ -37,13 +37,83 @@ public class UserService {
         }
     }
 	
-	public User updateAddress(String username, String newAddress) {
+	public User updateStreet(String username, String newStreet) {
         Optional<User> userOptional = userRepo.findById(username);
         
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             
-            user.setAddress(newAddress);
+            user.setStreet(newStreet);
+            
+            return userRepo.save(user);
+        } else {
+            throw new UserNotFoundException("User not found with the specified username: " + username);
+        }
+    }
+	
+	public User updateArea(String username, String newArea) {
+        Optional<User> userOptional = userRepo.findById(username);
+        
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            
+            user.setArea(newArea);
+            
+            return userRepo.save(user);
+        } else {
+            throw new UserNotFoundException("User not found with the specified username: " + username);
+        }
+    }
+	
+	public User updateCity(String username, String newCity) {
+        Optional<User> userOptional = userRepo.findById(username);
+        
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            
+            user.setCity(newCity);
+            
+            return userRepo.save(user);
+        } else {
+            throw new UserNotFoundException("User not found with the specified username: " + username);
+        }
+    }
+	
+	public User updateState(String username, String newState) {
+        Optional<User> userOptional = userRepo.findById(username);
+        
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            
+            user.setState(newState);
+            
+            return userRepo.save(user);
+        } else {
+            throw new UserNotFoundException("User not found with the specified username: " + username);
+        }
+    }
+	
+	public User updateCountry(String username, String newCountry) {
+        Optional<User> userOptional = userRepo.findById(username);
+        
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            
+            user.setStreet(newCountry);
+            
+            return userRepo.save(user);
+        } else {
+            throw new UserNotFoundException("User not found with the specified username: " + username);
+        }
+    }
+	
+	public User updatePinCode(String username, String newPinCode) {
+        Optional<User> userOptional = userRepo.findById(username);
+        
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            
+            user.setPin_code(newPinCode);
             
             return userRepo.save(user);
         } else {

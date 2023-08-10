@@ -1,0 +1,21 @@
+/* Login.css */
+.login-container {
+    width: 300px;
+    margin: auto;
+    margin-top: 10vh;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .login-title {
+    margin-bottom: 16px;
+  }
+  
+  .login-input {
+    margin-bottom: 16px;
+  }
+  
+  .login-button {
+    width: 100%;
+  }
+  

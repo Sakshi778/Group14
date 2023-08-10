@@ -3,26 +3,33 @@ import Typography from '@mui/material/Typography';
 import SideBarComponent from './SideBarComponent';
 import './Recommender.css'
 import StocksTableView from './StocksTableView';
+import { Card } from '@mui/material';
 
 const baseUrl = 'http://localhost:8080/';
 
 function Recommender() {
     const [index, setIndex] = useState('')
     const [display, setDisplay] = useState(true)
+    
 
     const updateIndex = (index) => {
         setIndex(index);
         setDisplay(false);
     };
+
       
     return (
         <div className='recommender-container'>
             <div style={{
                 display: 'flex',
+                flexDirection: 'row',
                 flex: '30%',
                 marginRight: '20px'
             }}>
             <SideBarComponent updateIndex={updateIndex}/>
+            <Card>
+
+            </Card>
             </div>
             {display && (
                 <div style={{
@@ -52,7 +59,7 @@ function Recommender() {
 
             {!display && (
                 <div>
-                <StocksTableView url={baseUrl+index}/>
+                <StocksTableView urlIndex={baseUrl+'indexStatus/'+index} urlStocks={baseUrl+index} index={index}/>
                 </div>
             )}
         </div>

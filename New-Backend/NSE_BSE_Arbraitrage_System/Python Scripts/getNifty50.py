@@ -8,8 +8,8 @@ import yfinance as yf
 import logging
 yf.set_tz_cache_location("custom/cache/location")
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# logging.basicConfig(level=logging.INFO)
+# logger = logging.getLogger(__name__)
 
 link = 'https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%2050'
 
@@ -40,8 +40,8 @@ def getNifty50():
     markets = list(cursor_market_status)
 
     for market in markets:
-        if market['Symbol'] == 'NIFTY 50':
-            update_query = {"_id": ObjectId(market['_id'])}
+        if market['_id'] == 'nifty50':
+            update_query = {"_id": market['_id']}
             entry = {
                 '$set' : {
                     'Current Price': stocks[0]['lastPrice'],

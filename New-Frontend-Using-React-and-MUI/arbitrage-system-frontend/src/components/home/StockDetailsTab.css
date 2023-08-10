@@ -1,0 +1,5 @@
+.scroll-container {
+    width: 100vw; /* 100% of the viewport width */
+    height: 100vh; /* 100% of the viewport height */
+    overflow: auto; /* Allow content to be scrolled if it exceeds the container size */
+}

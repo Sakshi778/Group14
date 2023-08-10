@@ -60,7 +60,27 @@ public class UserController {
             @PathVariable String username,
             @RequestBody User user
     ) {
-        return userService.updateAddress(username, user.getAddress());
+		User response = null;
+		if(user.getArea()!=null) {
+			response = userService.updateArea(username, user.getArea());
+		}
+		else if(user.getCity()!=null) {
+			response = userService.updateCity(username, user.getCity());
+		}
+		else if(user.getCountry()!=null) {
+			response = userService.updateCountry(username, user.getCountry());
+		}
+		else if(user.getPin_code()!=null) {
+			response = userService.updatePinCode(username, user.getPin_code());
+		}
+		else if(user.getState()!=null) {
+			response = userService.updateState(username, user.getState());
+		}
+		else if(user.getStreet()!=null) {
+			response = userService.updateStreet(username, user.getStreet());
+		}
+		
+		return response;
     }
 	
 	@PostMapping("/{username}/updateMobile")

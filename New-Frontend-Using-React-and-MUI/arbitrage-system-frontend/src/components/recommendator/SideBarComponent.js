@@ -10,7 +10,7 @@ function SideBarComponent({updateIndex}) {
     const [selectedValue, setSelectedValue] = useState('');
     const options = [
         { value: 'nifty50', label: 'NIFTY 50' },
-        { value: 'niftyMidCap50', label: 'NIFTY MIDCAP 50' },
+        { value: 'niftyIT', label: 'NIFTY IT' },
         { value: 'niftyPrivateBank', label: 'NIFTY PRIVATE BANK' },
         { value: 'niftyBank', label: 'NIFTY BANK' },
         { value: 'niftyAuto', label: 'NIFTY AUTO'}
@@ -22,23 +22,25 @@ function SideBarComponent({updateIndex}) {
     return (
         <div className='sidebar-container'>
             
-            <Typography gutterBottom variant='h6'
+            {/* <Typography gutterBottom variant='h6'
             style={{
                 margin: '10px',
                 marginBottom: '20px',
                 // textDecoration: 'underline'
-            }}>Choose Index</Typography>
+            }}>Choose Index</Typography> */}
 
-            <FormControl fullWidth variant="outlined">
+            <FormControl  variant="outlined" style={{
+                marginTop: 10
+            }}>
             <InputLabel>Select Index</InputLabel>
             <Select
                 value={selectedValue}
                 onChange={(event) => setSelectedValue(event.target.value)}
                 label="Select index"
                 style={{
-                    width: 250,
+                    width: '250px',
                     marginBottom: 20,
-                    
+                    marginRight: 20
                 }}
             >
                 {options.map((option) => (
@@ -48,9 +50,7 @@ function SideBarComponent({updateIndex}) {
                 ))}
             </Select>
             </FormControl>
-            <span style={{ display: 'block'}}>
-                <Button variant='contained' onClick={handleSubmit}>Submit</Button>
-            </span>
+            <Button variant='contained' onClick={handleSubmit} style={{alignSelf: 'stretch', height: 55, marginTop:10}}>Submit</Button>
         </div>
     )
 }

@@ -4,8 +4,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import lombok.Data;
+
 
 @Document(collection = "User_Stocks")
+@Data
 public class UserStocks {
 	@Id
     private String id;
@@ -29,6 +32,7 @@ public class UserStocks {
     
     @Field("Profit")
     private double profit;
+    
     
     public double getProfit() {
 		return profit;

@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface UserRepo extends MongoRepository<User, String> {
 	
 	User findByUsername(String username);
-//	User setEmail(String username, String newEmail);
-//	boolean authenticateUser(String username, String password);
 }

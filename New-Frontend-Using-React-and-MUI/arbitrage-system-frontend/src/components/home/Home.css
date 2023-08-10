@@ -1,0 +1,23 @@
+.home-container{
+    margin: 16px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.search-container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-symbol{
+    margin: 5%;
+    display: flex;
+    width: fit-content;
+}

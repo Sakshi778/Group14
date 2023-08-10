@@ -8,12 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {Alert, AlertTitle} from '@mui/material';
 function SavedStocksTableView() {
     const [data, setData] = useState([])
-    const [shouldRender, setShouldRender] = useState(false)
     const [deleteStatus, setDeleteStatus] = useState(false)
-    const [gotStocks, setGotStocks] = useState(false);
-    const [marketStatus, setMarketStatus] = useState(false);
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
 
     const getData = (url) => {
       //if market is closed then only fetch last trade data
@@ -21,9 +16,7 @@ function SavedStocksTableView() {
           .then((response) => response.json())
           .then((data) => {
             setData(data)
-            setShouldRender(true);
             setSortedData(data);
-            setGotStocks(true);
             console.log(data)
           })
           .catch((error) => console.error('Error fetching data:', error)); 
@@ -154,6 +147,16 @@ function SavedStocksTableView() {
       return formattedDateTime;
     };
 
+    const buyHandler = (bsePrice, nsePrice) => {
+      if(bsePrice>nsePrice) return "NSE";
+      else return "BSE";
+    }
+
+    const sellHandler = (bsePrice, nsePrice) => {
+      if(bsePrice>nsePrice) return "BSE";
+      else return "NSE";
+    }
+
     return (
         <div className="root">
               <div>
@@ -190,11 +193,11 @@ function SavedStocksTableView() {
                 <TableHead>
                     <TableRow>
                     <TableCell >
-                        {/* <Checkbox
+                        <Checkbox
                         checked={selectAll}
                         onChange={handleSelectAll}
                         color="primary"
-                        /> */}
+                        />
                     </TableCell>
                     <TableCell style={{fontWeight: 'bold'}}>
                     <TableSortLabel
@@ -248,6 +251,26 @@ function SavedStocksTableView() {
 
                     <TableCell style={{fontWeight: 'bold'}}>
                         <TableSortLabel
+                            active={sortConfig.key === 'profit'}
+                            direction={sortConfig.key === 'profit' ? sortConfig.direction : 'asc'}
+                            onClick={() => handleSort('profit')}
+                        >
+                            Bought On (Exchange Market)
+                        </TableSortLabel>
+                    </TableCell>
+
+                    <TableCell style={{fontWeight: 'bold'}}>
+                        <TableSortLabel
+                            active={sortConfig.key === 'profit'}
+                            direction={sortConfig.key === 'profit' ? sortConfig.direction : 'asc'}
+                            onClick={() => handleSort('profit')}
+                        >
+                            Sold On (Exchange Market)
+                        </TableSortLabel>
+                      </TableCell>
+
+                    <TableCell style={{fontWeight: 'bold'}}>
+                        <TableSortLabel
                             active={sortConfig.key === 'timestamp'}
                             direction={sortConfig.key === 'timestamp' ? sortConfig.direction : 'asc'}
                             onClick={() => handleSort('timestamp')}
@@ -264,16 +287,18 @@ function SavedStocksTableView() {
                     <TableRow 
                         key={item.id}
                         >
-                            {/* <Checkbox
+                            <Checkbox
                             checked={selectedRows.includes(item.id)}
                             onChange={() => handleRowCheckboxToggle(item.id)}
                             color="primary"
-                            /> */}
+                            />
                         <TableCell>{item.companyName}</TableCell>
                         <TableCell>{item.symbol}</TableCell>
                         <TableCell>{item.bsePrice}</TableCell>
                         <TableCell>{item.nsePrice}</TableCell>
                         <TableCell>{(item.profit).toFixed(2)}</TableCell>
+                        <TableCell>{buyHandler(item.bsePrice, item.nsePrice)}</TableCell>
+                        <TableCell>{sellHandler(item.bsePrice, item.nsePrice)}</TableCell>
                         <TableCell>{formatDateAndTime(item.timestamp)}</TableCell>
                         {/* Add more table cells for other data properties */}
                     </TableRow>
