@@ -1,34 +1,71 @@
-import React,{ useState } from 'react';
+import React,{ useState, useContext } from 'react';
 import { Typography } from '@mui/material';
+import {AuthContext} from '../contexts/AuthContext'
+
 
 import LoginCard from './LoginCard';
 import './LoginPage.css';
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState(false);
+    const { username, setUsername, password, setPassword, isLoggedIn, handleLogIn, handleLogOut } = useContext(AuthContext);
+    const [error, setError] = useState(false);
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // Perform login validation here
+            // Perform login validation here
+            const userData = { username, password };
+            console.log(userData);
+    
+            try {
+              const response = await fetch(' http://localhost:8080/login/authenticate', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+              });
+        
+              if (response.ok) {
+                // <Alert><strong>Stocks have been saved successfully!</strong></Alert>
+                // handleLogin();
+                console.log("Successfully logged in")
+                setError(false);
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+                // handleLogIn();
+                setUsername(userData.username);
+                setPassword(userData.password);
+                // handleLogIn();
+                
+              } else{
+                // <Alert severity="error">
+                //   <AlertTitle>Wrong Credentials</AlertTitle>
+                //   <strong>Error occured! Please try again!</strong>
+                // </Alert>
+              }
+            } catch (error) {
+              console.error('Error:', error);
+            //   <Alert severity="error">
+            //       <AlertTitle>Wrong Credentials</AlertTitle>
+            //       <strong>Error occured! Please try again!</strong>
+            //     </Alert>
+            }
+      };
+
+
   
-  const handleLogin = (event) => {
-     event.preventDefault();
-      if (username === "sakshi" && password === "123456") {
-        handleLogin();
-        setLoginError(false);
-      }
-      else{
-        setLoginError(true);
-        setUsername("");
-        setPassword("");
-      }
-     console.log(`Username: ${username}, Password: ${password}`);
-  };
+//   const handleLogin = (event) => {
+//      event.preventDefault();
+//       if (username === "sakshi" && password === "123456") {
+//         handleLogin();
+//         setLoginError(false);
+//       }
+//       else{
+//         setLoginError(true);
+//         setUsername("");
+//         setPassword("");
+//       }
+//      console.log(`Username: ${username}, Password: ${password}`);
+//   };
 
   return (
 <div className="login-container">
@@ -50,7 +87,7 @@ const LoginPage = () => {
   <div style={{
     flex:1,
   }}></div>
-          <LoginCard/>
+          <LoginCard handleSubmit={handleSubmit}/>
 
   </div>
 

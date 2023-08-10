@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Card,CardContent,Stack,Button,TextField,Typography } from '@mui/material'
-export default function LoginCard() {
+import {AuthContext} from '../contexts/AuthContext'
+export default function LoginCard({handleSubmit}) {
+    const { username, setUsername, password, setPassword, isLoggedIn, handleLogIn, handleLogOut } = useContext(AuthContext);
   return (
     <div style={{
         flex: 1,
@@ -20,9 +22,14 @@ export default function LoginCard() {
                 fontWeight: 'bold',
                 minWidth: '100px',
             }}>Login </Typography>
-          <TextField label="Username" variant="outlined" />
-          <TextField label="Password" type="password" variant="outlined" />
-          <Button variant="contained" color="primary" style={{width:'20%',alignSelf:'center'}}>
+          <TextField label="Username" variant="outlined" 
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}/>
+          <TextField label="Password" type="password" variant="outlined" 
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}/>
+          <Button variant="contained" color="primary" style={{width:'20%',alignSelf:'center'}}
+          onClick={handleSubmit}>
             Submit
           </Button>
         </Stack>
