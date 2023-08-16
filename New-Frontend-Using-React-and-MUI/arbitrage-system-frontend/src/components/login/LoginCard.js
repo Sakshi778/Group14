@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import { Card,CardContent,Stack,Button,TextField,Typography } from '@mui/material'
 import {AuthContext} from '../contexts/AuthContext'
 export default function LoginCard({handleSubmit}) {
-    const { username, setUsername, password, setPassword, isLoggedIn, handleLogIn, handleLogOut } = useContext(AuthContext);
+    const { username, setUsername, password, setPassword, isLoggedIn, handleLogIn, handleLogOut, setIsLoggedIn } = useContext(AuthContext);
   return (
     <div style={{
         flex: 1,

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Profile.css'
 import ProfileSideBar from './ProfileSideBar'
 import { Button, Typography } from '@mui/material'
 import DynamicRenderer from './DynamicRenderer'
 import {Edit} from '@mui/icons-material';
+import { AuthContext } from '../contexts/AuthContext'
 
 function Profile() {
+  const { username } = useContext(AuthContext)
   const [profile, setProfile] = useState(null)
   const [mobileNo, setMobileNo] = useState('')
   const [email, setEmail] = useState('')
@@ -18,7 +20,7 @@ function Profile() {
   const [insEditingAd, setEditingAd] = useState(false);
   const [gotProfileInfo, setGotProfileInfo] = useState(false);
   useEffect(() => {
-    fetch('http://localhost:8080/sdavis92')
+    fetch('http://localhost:8080/'+username)
       .then((response) => response.json())
       .then((data) => {
           setProfile(data);

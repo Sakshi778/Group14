@@ -10,10 +10,10 @@ function SideBarComponent({updateIndex}) {
     const [selectedValue, setSelectedValue] = useState('');
     const options = [
         { value: 'nifty50', label: 'NIFTY 50' },
-        { value: 'niftyIT', label: 'NIFTY IT' },
-        { value: 'niftyPrivateBank', label: 'NIFTY PRIVATE BANK' },
-        { value: 'niftyBank', label: 'NIFTY BANK' },
-        { value: 'niftyAuto', label: 'NIFTY AUTO'}
+        { value: 'niftyIT', label: 'NIFTY IT' }
+        // { value: 'niftyPrivateBank', label: 'NIFTY PRIVATE BANK' },
+        // { value: 'niftyBank', label: 'NIFTY BANK' },
+        // { value: 'niftyAuto', label: 'NIFTY AUTO'}
     ];
 
     const handleSubmit = () =>{

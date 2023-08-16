@@ -1,4 +1,3 @@
-// if you by any chance want to access username or password access them from here for now they haven't been set person who is 
 import React, { createContext, useState } from 'react';
 
 const AuthContext = createContext();
@@ -6,9 +5,20 @@ const AuthContext = createContext();
 const AuthContextProvider = ({ children }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogIn =() => {
+    setIsLoggedIn(true);
+  }
+
+  const handleLogOut =() => {
+    setIsLoggedIn(false);
+    setUsername('');
+    setPassword('');
+  }
 
   return (
-    <AuthContext.Provider value={{ username, setUsername, password, setPassword }}>
+    <AuthContext.Provider value={{ username, setUsername, password, setPassword, isLoggedIn, handleLogIn, handleLogOut, setIsLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

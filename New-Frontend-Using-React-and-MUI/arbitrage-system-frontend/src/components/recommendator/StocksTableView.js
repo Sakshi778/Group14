@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect, memo, useContext } from 'react'
 import { TableContainer, TableCell, TableHead, TableRow, TableBody, Table, TableSortLabel, TextField, Button, Paper, CircularProgress } from '@mui/material';
 import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
@@ -6,12 +6,14 @@ import './StocksTableView.css'
 import Checkbox from '@mui/material/Checkbox';
 import SaveIcon from '@mui/icons-material/Save';
 import {Alert, AlertTitle} from '@mui/material';
-import DynamicRenderer from '../profile/DynamicRenderer';
 import IndexStatus from './IndexStatus';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 
 function StocksTableView({urlIndex, urlStocks, index}) {
+  const { username } = useContext(AuthContext)
+  
     const [data, setData] = useState([])
     const [shouldRender, setShouldRender] = useState(false)
     const [saveStatus, setSaveStatus] = useState(false)
@@ -243,7 +245,7 @@ function StocksTableView({urlIndex, urlStocks, index}) {
 
       async function sendDataToServer(data) {
         try {
-          const response = await fetch('http://localhost:8080/sdavis92/addStock', {
+          const response = await fetch('http://localhost:8080/'+username+'/addStock', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -275,7 +277,7 @@ function StocksTableView({urlIndex, urlStocks, index}) {
           var targetObject = data.find(obj => obj.id === selectedRows[i]);
           console.log(targetObject);
           var savedStock = {}
-          savedStock.username = 'sdavis92';
+          savedStock.username = username;
           savedStock.symbol = targetObject.symbol;
           savedStock.companyName = targetObject.companyName;
           savedStock.bsePrice = targetObject.bsePrice;
@@ -327,7 +329,7 @@ function StocksTableView({urlIndex, urlStocks, index}) {
                 )}
                 <Typography variant='p' style={{
                   alignSelf: 'flex-end'
-                }}>Market Closed As of<br></br><strong>{indexStatus['lastUpdatedTime']} IST</strong> </Typography>
+                }}>Market Opened As of<br></br><strong>{indexStatus['lastUpdatedTime']} IST</strong> </Typography>
                   <Typography variant="h4" gutterBottom style={{ marginLeft: '3%', marginTop: '3%', textAlign: 'left'}}>
                       Arbitrage Recommendations
                   </Typography>

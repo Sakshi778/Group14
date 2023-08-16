@@ -1,7 +1,7 @@
 import { Typography, TextField, Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { memo } from 'react'
-import './Home.css'
+import './HomePage.css'
 import SearchIcon from '@mui/icons-material/Search';
 import StockDetails from '../stock-details/StockDetails';
 

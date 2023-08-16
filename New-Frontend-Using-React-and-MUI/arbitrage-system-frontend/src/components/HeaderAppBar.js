@@ -12,36 +12,35 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './HeaderAppBar.css'
+import { useContext } from 'react';
+import { AuthContext } from './contexts/AuthContext';
 
 const pages = [
   {
     label: 'Home',
-    path: '/'
+    path: '/home/home-page'
   },
   {
     label: 'Recommender',
-    path: '/recommender'
+    path: '/home/recommender'
   },
   {
     label: 'Your Stocks',
-    path: '/your-stocks'
-  }
-];
-const settings = [
-  {
-    label: 'Profile',
-    path: '/profile'
+    path: '/home/your-stocks'
   },
   {
-    label: 'Logout',
-    path: '/login'
-  }];
-
+    label: 'Profile',
+    path: '/home/profile'
+  }
+];
 function HeaderAppBar() {
+
+  const { username, setUsername, password, setPassword, isLoggedIn, handleLogIn, handleLogOut, setIsLoggedIn } = useContext(AuthContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -58,6 +57,11 @@ function HeaderAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleLogOutSubmt =  () => {
+    handleLogOut()
+    navigate('/')
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -66,7 +70,7 @@ function HeaderAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home/home-page"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -149,33 +153,7 @@ function HeaderAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting.label} onClick={handleCloseUserMenu}>
-                  <Link to={setting.path} className='navigation-text'><Typography textAlign="center">{setting.label}</Typography></Link>
-                </MenuItem>
-              ))}
-            </Menu>
+            <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={handleLogOutSubmt}>Logout</Button>
           </Box>
         </Toolbar>
       </Container>

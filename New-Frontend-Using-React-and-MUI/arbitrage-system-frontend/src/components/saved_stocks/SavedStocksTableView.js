@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect, memo, useContext } from 'react'
 import { TableContainer, TableCell, TableHead, TableRow, TableBody, Table, TableSortLabel, TextField, Button, Paper, CircularProgress } from '@mui/material';
 import TablePagination from '@mui/material/TablePagination';
 import Typography from '@mui/material/Typography';
@@ -6,7 +6,9 @@ import '../recommendator/StocksTableView.css'
 import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Alert, AlertTitle} from '@mui/material';
+import { AuthContext } from '../contexts/AuthContext';
 function SavedStocksTableView() {
+    const { username } = useContext(AuthContext)
     const [data, setData] = useState([])
     const [deleteStatus, setDeleteStatus] = useState(false)
 
@@ -18,12 +20,13 @@ function SavedStocksTableView() {
             setData(data)
             setSortedData(data);
             console.log(data)
+            console.log(username)
           })
           .catch((error) => console.error('Error fetching data:', error)); 
     }
 
     useEffect(() =>{
-        getData('http://localhost:8080/sdavis92/stocks')
+        getData('http://localhost:8080/'+username+'/stocks')
     }, [])
     
     const [sortedData, setSortedData] = React.useState(data);

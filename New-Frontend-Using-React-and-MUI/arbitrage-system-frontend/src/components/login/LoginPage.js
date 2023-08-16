@@ -1,13 +1,19 @@
-import React,{ useState, useContext } from 'react';
-import { Typography } from '@mui/material';
+import React,{ useState, useContext, useEffect } from 'react';
+import { Alert, Typography } from '@mui/material';
 import {AuthContext} from '../contexts/AuthContext'
 
 
 import LoginCard from './LoginCard';
 import './LoginPage.css';
+import { useNavigate } from 'react-router-dom';
 const LoginPage = () => {
-    const { username, setUsername, password, setPassword, isLoggedIn, handleLogIn, handleLogOut } = useContext(AuthContext);
+    const { username, setUsername, password, setPassword, isLoggedIn, handleLogIn, handleLogOut, setIsLoggedIn } = useContext(AuthContext);
     const [error, setError] = useState(false);
+    const navigate = useNavigate()
+
+    useEffect(() => {
+      console.log('isLoggedIn:', isLoggedIn);
+    }, [isLoggedIn]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,15 +41,22 @@ const LoginPage = () => {
                 setUsername(userData.username);
                 setPassword(userData.password);
                 // handleLogIn();
+                setIsLoggedIn(true);
+                navigate('/home/home-page');
+                console.log(isLoggedIn)
+                console.log(username)
+                console.log(password)
                 
               } else{
                 // <Alert severity="error">
                 //   <AlertTitle>Wrong Credentials</AlertTitle>
                 //   <strong>Error occured! Please try again!</strong>
                 // </Alert>
+                setError(true);
               }
             } catch (error) {
               console.error('Error:', error);
+              setError(true);
             //   <Alert severity="error">
             //       <AlertTitle>Wrong Credentials</AlertTitle>
             //       <strong>Error occured! Please try again!</strong>
@@ -80,6 +93,9 @@ const LoginPage = () => {
               }} gutterBottom><p><span id="arb">Arbitrage </span><br/>Recommendation System</p>
               </Typography>
 </div>
+{error && (
+  <Alert severity="error" onClose={() => {setError(false)}}><strong>Invalid Credentials. Please Try again!</strong></Alert>
+)}
 
 <div className="content">
   <div className="form">

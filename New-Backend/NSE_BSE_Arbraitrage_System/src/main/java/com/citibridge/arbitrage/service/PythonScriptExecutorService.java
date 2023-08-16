@@ -20,7 +20,7 @@ public class PythonScriptExecutorService {
 	@PostConstruct
     public void startPythonExecutionOfNifty50() {
 		scheduler.scheduleAtFixedRate(this::executePythonScriptForNIftyIT, 0, 5, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(this::executePythonScriptForNIfty50, 0, 20, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(this::executePythonScriptForNIfty50, 0, 40, TimeUnit.SECONDS);
         
     }
 	
@@ -29,6 +29,7 @@ public class PythonScriptExecutorService {
 		boolean marketStatus = marketStatusService.getMarketStatus();
 //		System.out.println(marketStatus);
 		if(marketStatus) {
+			System.out.println("nifty 50");
 	        try {
 	            String pythonCommand = "python";
 	            String scriptAbsolutePath = "C:/Users/BHAKTEE/Documents/CitiBridge/Workflow/Group14/New-Backend/NSE_BSE_Arbraitrage_System/Python Scripts/getNifty50.py"; // Replace with actual script path
@@ -50,7 +51,7 @@ public class PythonScriptExecutorService {
 		boolean marketStatus = marketStatusService.getMarketStatus();
 //		System.out.println("nifty it"+marketStatus);
 		if(marketStatus) {
-//			System.out.println("nifty it");
+			System.out.println("nifty it");
 	        try {
 	            String pythonCommand = "python";
 	            String scriptAbsolutePath = "C:/Users/BHAKTEE/Documents/CitiBridge/Workflow/Group14/New-Backend/NSE_BSE_Arbraitrage_System/Python Scripts/getNiftyIt.py"; // Replace with actual script path
