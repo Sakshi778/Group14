@@ -1,0 +1,21 @@
+/* styles.css */
+.root {
+    margin: 16px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    margin-bottom: 16px;
+  }
+  
+  .searchInput {
+    margin-bottom: 16px;
+  }
+
+  .header-titles{
+    font-style: bold;
+  }
+  

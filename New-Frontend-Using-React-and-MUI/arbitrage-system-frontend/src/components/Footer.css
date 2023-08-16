@@ -1,0 +1,22 @@
+.footer {
+  padding: 20px 0;
+  background-color: #1976D2;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: none;
+  transition: opacity 1.0s ease-in-out;
+  z-index: 100; /* Ensure it's above the content */
+}
+
+.show-footer {
+  display: block;
+  opacity: 1; /* Show with full opacity */
+}
+
+.link-text {
+  color: white;
+}
+
+/* ... Rest of the styling */

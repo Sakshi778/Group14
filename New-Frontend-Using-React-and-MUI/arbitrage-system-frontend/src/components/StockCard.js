@@ -5,12 +5,18 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './StockCard.css';
+// , onHandleSave, onHandleLearnMore}
+export default function StockCard(props) {
+  const stock = props.stock;
+  const symbol = stock.symbol;
 
-export default function StockCard() {
+  const profitAccurate = Math.abs(stock.bsePrice - stock.nsePrice);
+  const profitRounded = parseFloat(stock.profit.toFixed(2))
+
   return (
     <Card sx={{
-      maxWidth: 300,
-      minWidth: 300,
+      maxWidth: 350,
+      minWidth: 350,
       margin: 5,
     }}>
       <CardContent >
@@ -22,18 +28,18 @@ export default function StockCard() {
           <Typography variant="h5" component="div"
           style={{
             flex: 1,
-            fontSize: '35px'
+            fontSize: '30px'
           }}>
-            APOLO
+            {stock.symbol}
           </Typography>
           <div>
             <Typography variant="h5" component="div"
             style={{
               flex: 1,
               textAlign: 'right',
-              fontSize: '40px'
+              fontSize: '30px'
             }}>
-              0.2
+              {profitRounded}
             </Typography>
             <Typography variant="body" component="div"
             style={{
@@ -49,16 +55,16 @@ export default function StockCard() {
       </CardContent>
       <CardContent>
         <Typography variant="h5" component="div" className='line-clamp'>
-          Apollo Hospital limited arial hospital with incoming
+          {stock.companyName}
         </Typography>
         <div>
           <Typography variant="body2" color="text.secondary">
-            BSE Current Price: 125.5
+            BSE Current Price: {stock.bsePrice}
           </Typography>
         </div>
         <div>
           <Typography variant="body2" color="text.secondary">
-            NSE Current Price: 125.7
+            NSE Current Price: {stock.nsePrice}.toFixed(2)
           </Typography>
         </div>
       </CardContent>

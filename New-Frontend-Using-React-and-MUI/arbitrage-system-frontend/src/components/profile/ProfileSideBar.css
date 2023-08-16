@@ -1,0 +1,11 @@
+.profile-side-bar-container {
+    width: 25%;
+    border: 1px grey solid;
+    padding: 5px;
+    margin: 5px;
+    height: auto;
+}
+
+.edit-buttons {
+    margin: 10px;
+}
